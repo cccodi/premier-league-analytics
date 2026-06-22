@@ -1,90 +1,149 @@
 # Data Dictionary
 
-**Dataset:** Premier League 2025/26 Match Data  
-**Source:** Football-data.co.uk  
+This document describes the datasets used in the Premier League Analytics project.
+
+The original match dataset was cleaned, transformed, and separated into relational tables before analysis.
 
 ---
 
-## Match Information
+# Table: matches
 
-| Column | Data Type | Meaning |
+Contains match-level information including teams, results, and match context.
+
+| Column | Data Type | Description |
 |---|---|---|
-| Div | VARCHAR | League division identifier |
-| Date | VARCHAR | Match date in raw format (DD/MM/YYYY) |
-| HomeTeam | VARCHAR | Team playing at home |
-| AwayTeam | VARCHAR | Team playing away |
-| FTHG | INT | Full-time home goals |
-| FTAG | INT | Full-time away goals |
-| FTR | CHAR | Full-time result |
-| HTHG | INT | Half-time home goals |
-| HTAG | INT | Half-time away goals |
-| HTR | CHAR | Half-time result |
-| Referee | VARCHAR | Match referee |
+| match_id | Integer | Unique identifier for each match |
+| division | String | League division/competition identifier |
+| match_date | Date | Date when the match was played |
+| home_team | String | Team playing at home |
+| away_team | String | Team playing away |
+| full_time_result | String | Full-time match result (H = Home win, D = Draw, A = Away win) |
+| home_goals | Integer | Goals scored by the home team at full time |
+| away_goals | Integer | Goals scored by the away team at full time |
+| half_home_goals | Integer | Goals scored by home team at half time |
+| half_away_goals | Integer | Goals scored by away team at half time |
+| half_time_result | String | Half-time result (H, D, A) |
+| referee | String | Match referee |
 
 ---
 
-## Match Statistics
+# Table: match_statistics
 
-| Column | Data Type | Meaning |
+Contains match performance statistics for both teams.
+
+| Column | Data Type | Description |
 |---|---|---|
-| HS | INT | Total shots by home team |
-| AS | INT | Total shots by away team |
-| HST | INT | Home team shots on target |
-| AST | INT | Away team shots on target |
-| HF | INT | Home team fouls |
-| AF | INT | Away team fouls |
-| HC | INT | Home team corners |
-| AC | INT | Away team corners |
-| HY | INT | Home team yellow cards |
-| AY | INT | Away team yellow cards |
-| HR | INT | Home team red cards |
-| AR | INT | Away team red cards |
+| stats_id | Integer | Unique identifier for statistics record |
+| match_id | Integer | Links statistics to matches table |
+| home_shots | Integer | Total shots by home team |
+| away_shots | Integer | Total shots by away team |
+| home_shots_target | Integer | Home team shots on target |
+| away_shots_target | Integer | Away team shots on target |
+| home_corners | Integer | Corners taken by home team |
+| away_corners | Integer | Corners taken by away team |
+| home_fouls | Integer | Fouls committed by home team |
+| away_fouls | Integer | Fouls committed by away team |
+| home_yellow | Integer | Yellow cards received by home team |
+| away_yellow | Integer | Yellow cards received by away team |
+| home_red | Integer | Red cards received by home team |
+| away_red | Integer | Red cards received by away team |
 
 ---
 
-## Betting Odds
+# Table: odds
 
-| Column | Data Type | Meaning |
+Contains betting market information associated with each match.
+
+| Column | Data Type | Description |
 |---|---|---|
-| AvgH | DECIMAL | Average bookmaker odds for home team win |
-| AvgD | DECIMAL | Average bookmaker odds for draw |
-| AvgA | DECIMAL | Average bookmaker odds for away team win |
-| Avg>2.5 | DECIMAL | Average odds for over 2.5 total goals |
-| Avg<2.5 | DECIMAL | Average odds for under 2.5 total goals |
-| AHh | DECIMAL | Asian handicap market value |
+| odds_id | Integer | Unique identifier for odds record |
+| match_id | Integer | Links odds to matches table |
+| avg_home_odds | Decimal | Average betting odds for home team win |
+| avg_draw_odds | Decimal | Average betting odds for draw |
+| avg_away_odds | Decimal | Average betting odds for away team win |
+| avg_over_25 | Decimal | Average odds for over 2.5 total goals |
+| avg_under_25 | Decimal | Average odds for under 2.5 total goals |
+| asian_handicap | Decimal | Asian handicap betting line |
 
 ---
 
-## Result Values
+# Table: match_features
 
-| Value | Meaning |
+Contains engineered features created from match results, statistics, and odds.
+
+These features were created to support trend analysis and identify relationships between team performance and match outcomes.
+
+| Column | Data Type | Description |
+|---|---|---|
+| match_id | Integer | Unique match identifier |
+| match_date | Date | Date of match |
+| home_team | String | Home team |
+| away_team | String | Away team |
+| home_goals | Integer | Home team goals |
+| away_goals | Integer | Away team goals |
+| home_shots | Integer | Home team total shots |
+| away_shots | Integer | Away team total shots |
+| home_shots_target | Integer | Home team shots on target |
+| away_shots_target | Integer | Away team shots on target |
+| home_corners | Integer | Home team corners |
+| away_corners | Integer | Away team corners |
+| home_fouls | Integer | Home team fouls |
+| away_fouls | Integer | Home team fouls |
+| home_yellow | Integer | Home team yellow cards |
+| away_yellow | Integer | Away team yellow cards |
+| home_red | Integer | Home team red cards |
+| away_red | Integer | Away team red cards |
+| avg_home_odds | Decimal | Average home win odds |
+| avg_draw_odds | Decimal | Average draw odds |
+| avg_away_odds | Decimal | Average away win odds |
+| goal_difference | Integer | Difference between home and away goals |
+| total_goals | Integer | Combined goals scored in match |
+| home_shot_accuracy | Decimal | Home shots on target divided by total shots |
+| away_shot_accuracy | Decimal | Away shots on target divided by total shots |
+| home_conversion_rate | Decimal | Home goals divided by shots on target |
+| away_conversion_rate | Decimal | Away goals divided by shots on target |
+| total_corners | Integer | Combined corners from both teams |
+| corner_difference | Integer | Difference between home and away corners |
+| total_fouls | Integer | Combined fouls committed |
+| total_yellow_cards | Integer | Combined yellow cards |
+| total_red_cards | Integer | Combined red cards |
+| red_card_match | String | Indicates whether match contained a red card |
+| over_2_5_goals | String | Indicates whether match had over 2.5 goals |
+| home_clean_sheet | String | Indicates whether home team conceded no goals |
+| away_clean_sheet | String | Indicates whether away team conceded no goals |
+| home_points | Integer | Points earned by home team (3 win, 1 draw, 0 loss) |
+| away_points | Integer | Points earned by away team (3 win, 1 draw, 0 loss) |
+
+---
+
+# Notes
+
+## Result Codes
+
+| Code | Meaning |
 |---|---|
-| H | Home Win |
+| H | Home team win |
 | D | Draw |
-| A | Away Win |
+| A | Away team win |
 
----
+## Feature Engineering
 
-## Data Transformation Notes
+The `match_features` table contains derived metrics created from the original match data.
 
-| Raw Column | SQL Column | Transformation |
-|---|---|---|
-| Date | match_date | Converted from VARCHAR (DD/MM/YYYY) into SQL DATE format |
-| HomeTeam | home_team | Renamed for consistency |
-| AwayTeam | away_team | Renamed for consistency |
-| FTHG | home_goals | Renamed for analysis |
-| FTAG | away_goals | Renamed for analysis |
-| FTR | full_time_result | Renamed for readability |
-| HS, AS, HST, AST, etc. | match_statistics table | Separated into statistics table |
-| AvgH, AvgD, AvgA, etc. | odds table | Separated into betting odds table |
+Examples:
 
----
+- Goal difference
+- Total goals
+- Shot accuracy
+- Conversion rate
+- Total corners
+- Clean sheet indicators
+- Points earned
 
-## Database Structure
+These features are used for SQL analysis and identifying patterns such as home advantage, team performance, and match outcome trends.
 
-| Table | Purpose |
-|---|---|
-| matches | Stores match details and results |
-| match_statistics | Stores team performance statistics |
-| odds | Stores betting market information |
-| premier_league_analysis | View combining all match data for analysis |
+## Missing Values
+
+Missing values are stored as NULL where information is unavailable.
+
+Values were not replaced with estimated values to avoid introducing assumptions into the analysis.

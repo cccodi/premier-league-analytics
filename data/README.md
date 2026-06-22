@@ -15,20 +15,6 @@ The dataset contains match-level information including:
 - Match statistics
 - Betting odds
 
-## Folder Structure
-data/
-│
-├── raw/
-│ └── premier_league_2025_26.csv
-│
-├── processed/
-│ ├── matches.csv
-│ ├── match_statistics.csv
-│ ├── odds.csv
-│ └── match_features.csv
-│
-└── data_dictionary.md
-
 ## Raw Data
 
 `raw/premier_league_2025_26.csv`

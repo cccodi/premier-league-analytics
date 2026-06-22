@@ -68,6 +68,118 @@ away_clean_sheet
 
 FROM match_features;
 
+
+-- ============================================================
+-- View: League Standings
+------------------------
+
+-- Creates a reusable league table view
+-- for dashboard reporting.
+-- ============================================================
+
+CREATE VIEW vw_league_standings AS
+
+WITH team_results AS (
+
+    -- Home team results
+    SELECT
+
+        home_team AS team,
+
+        1 AS played,
+
+        CASE
+            WHEN home_goals > away_goals THEN 1
+            ELSE 0
+        END AS wins,
+
+        CASE
+            WHEN home_goals = away_goals THEN 1
+            ELSE 0
+        END AS draws,
+
+        CASE
+            WHEN home_goals < away_goals THEN 1
+            ELSE 0
+        END AS losses,
+
+        home_goals AS goals_for,
+
+        away_goals AS goals_against,
+
+        home_points AS points
+
+    FROM match_features
+
+
+    UNION ALL
+
+
+    -- Away team results
+    SELECT
+
+        away_team AS team,
+
+        1 AS played,
+
+        CASE
+            WHEN away_goals > home_goals THEN 1
+            ELSE 0
+        END AS wins,
+
+        CASE
+            WHEN away_goals = home_goals THEN 1
+            ELSE 0
+        END AS draws,
+
+        CASE
+            WHEN away_goals < home_goals THEN 1
+            ELSE 0
+        END AS losses,
+
+        away_goals AS goals_for,
+
+        home_goals AS goals_against,
+
+        away_points AS points
+
+    FROM match_features
+)
+
+
+SELECT
+
+ROW_NUMBER() OVER(
+    ORDER BY
+        SUM(points) DESC,
+        SUM(goals_for - goals_against) DESC,
+        SUM(goals_for) DESC
+) AS position,
+
+
+team,
+
+SUM(played) AS played,
+
+SUM(wins) AS wins,
+
+SUM(draws) AS draws,
+
+SUM(losses) AS losses,
+
+SUM(goals_for) AS GF,
+
+SUM(goals_against) AS GA,
+
+SUM(goals_for - goals_against) AS GD,
+
+SUM(points) AS points
+
+
+FROM team_results
+
+GROUP BY team;
+
 -- ============================================================
 -- View: Shooting Efficiency
 ----------------------------

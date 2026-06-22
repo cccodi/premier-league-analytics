@@ -1,48 +1,159 @@
-# Premier League Analytics Project
+# Premier League Analytics Project ⚽
 
 ## Overview
-A SQL-based data analysis project exploring Premier League 2025/26 match performance, team trends, and betting odds.
 
-## Objective
-Analyze match results, team performance, attacking efficiency, and betting market patterns using SQL.
+This project analyzes Premier League match data to identify team performance trends, home advantage patterns, attacking efficiency, and match outcomes.
 
-## Tools Used
-- MySQL
-- SQL
-- Power BI (optional)
+The analysis was performed using SQL to clean, transform, and analyze match-level data, with insights prepared for reporting and dashboard visualization.
+
+---
+
+## Objectives
+
+- Analyze overall league performance
+- Generate league standings from match results
+- Evaluate home vs away performance
+- Identify attacking and defensive trends
+- Compare betting odds with actual results
+- Prepare dashboard-ready metrics
+
+---
 
 ## Dataset
-Source:
-Football-data.co.uk
 
-Contains:
+The dataset contains Premier League match information including:
+
 - Match results
-- Match statistics
+- Goals scored
+- Shots and shots on target
+- Corners
+- Fouls
+- Cards
 - Betting odds
 
-## Project Workflow
+Dataset files:
 
-1. Database Setup
-2. Data Cleaning
-3. Exploratory Analysis
-4. Feature Engineering
-5. Views Creation
-6. Dashboard Preparation
+```text
+data/
+├── matches.csv
+├── match_statistics.csv
+└── odds.csv
+```
 
-## Key Insights
+More details:
 
-- Home teams won 42.63% of matches
-- Home teams averaged 1.53 goals compared to 1.22 away goals
-- Home teams recorded higher shots and shots on target
-- Manchester City had the highest home goals
-- Average match goals were 2.75
-- Arsenal and Manchester City received the lowest home odds, indicating strong bookmaker confidence
+- [Data Dictionary](docs/data_dictionary.md)
 
-## Files
+---
 
+## SQL Workflow
+
+The project follows a structured analytics workflow:
+
+```text
 01_database_setup.sql
-02_data_cleaning.sql
+        ↓
+02_data_cleaning_validation.sql
+        ↓
 03_exploratory_analysis.sql
+        ↓
 04_feature_engineering.sql
+        ↓
 05_views.sql
+        ↓
 06_dashboard_queries.sql
+```
+
+### SQL Files
+
+| File | Purpose |
+|---|---|
+| 01_database_setup.sql | Creates database and table structure |
+| 02_data_cleaning_validation.sql | Cleans and validates imported data |
+| 03_exploratory_analysis.sql | Performs exploratory analysis |
+| 04_feature_engineering.sql | Creates reusable performance metrics |
+| 05_views.sql | Creates reusable SQL views |
+| 06_dashboard_queries.sql | Generates dashboard-ready queries |
+
+---
+
+## Analysis Covered
+
+### League Performance
+
+- Total matches
+- Total goals
+- Average goals per match
+- League standings
+
+### Team Performance
+
+- Wins, draws, and losses
+- Goals scored and conceded
+- Goal difference
+- Points comparison
+
+### Home Advantage Analysis
+
+- Home vs away points
+- Home vs away goals
+- Team-level home advantage
+
+### Match Analysis
+
+- Result distribution
+- Shooting efficiency
+- Odds vs actual results
+- Match intensity
+
+---
+
+## Findings
+
+Detailed analysis insights:
+
+[View Findings](docs/findings.md)
+
+---
+
+## Tools Used
+
+- MySQL
+- SQL
+- GitHub
+- Power BI / Tableau
+
+---
+
+## Project Structure
+
+```text
+Premier-League-Analytics/
+
+├── README.md
+│
+├── data/
+│   ├── matches.csv
+│   ├── match_statistics.csv
+│   └── odds.csv
+│
+├── sql/
+│   ├── 01_database_setup.sql
+│   ├── 02_data_cleaning_validation.sql
+│   ├── 03_exploratory_analysis.sql
+│   ├── 04_feature_engineering.sql
+│   ├── 05_views.sql
+│   └── 06_dashboard_queries.sql
+│
+├── docs/
+│   ├── findings.md
+│   └── data_dictionary.md
+│
+└── dashboard/
+```
+
+---
+
+## Author
+
+Clarisse

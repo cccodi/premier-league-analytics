@@ -51,7 +51,7 @@
 | AvgA | DECIMAL | Average bookmaker odds for away team win |
 | Avg>2.5 | DECIMAL | Average odds for over 2.5 total goals |
 | Avg<2.5 | DECIMAL | Average odds for under 2.5 total goals |
-| AH | DECIMAL | Asian handicap market value |
+| AHh | DECIMAL | Asian handicap market value |
 
 ---
 

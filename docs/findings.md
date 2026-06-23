@@ -24,7 +24,7 @@ Calculated the total goals scored across all matches.
 
 Result:
 
-- Total Goals: **1,086**
+- Total Goals: **1,045**
 
 ---
 
@@ -36,7 +36,7 @@ Calculated average goals scored per match.
 
 Result:
 
-- Average Goals Per Match: **2.86**
+- Average Goals Per Match: **2.75**
 
 ---
 

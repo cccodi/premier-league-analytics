@@ -2,9 +2,21 @@
 
 ## Overview
 
-This project analyzes Premier League match data to identify team performance trends, home advantage patterns, attacking efficiency, and match outcomes.
+This project demonstrates an end-to-end data analytics workflow, from raw data
+preparation and SQL-based analysis to dashboard development and future
+predictive modeling.
 
-The analysis was performed using SQL to clean, transform, and analyze match-level data, with insights prepared for reporting and dashboard visualization.
+---
+
+## Project Status
+
+Current progress:
+
+✅ Data cleaning and validation  
+✅ SQL analysis and feature engineering  
+✅ Home vs away performance analysis  
+🚧 Dashboard development  
+🔜 Machine learning extension
 
 ---
 
@@ -108,20 +120,32 @@ The project follows a structured analytics workflow:
 
 ---
 
-## Findings
+## Key Findings
 
-Detailed analysis insights:
-
-[View Findings](docs/findings.md)
+- Home teams achieved higher average points compared with away teams,
+  demonstrating measurable home advantage.
+- Goal-scoring patterns varied significantly across teams.
+- Attacking efficiency differed between high-performing and mid-table teams.
+- Match statistics provided additional context beyond final results.
 
 ---
 
-## Tools Used
+## Tools & Technologies
 
+Database:
 - MySQL
+
+Analysis:
 - SQL
+- Excel
+- Python
+
+Visualization:
+- Power BI
+- Tableau
+
+Version Control:
 - GitHub
-- Power BI / Tableau
 
 ---
 
